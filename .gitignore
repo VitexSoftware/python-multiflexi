@@ -64,3 +64,12 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+debian/python3-multiflexi.postinst.debhelper
+debian/python3-multiflexi.prerm.debhelper
+debian/python3-multiflexi/
+debian/python3-multiflexi.substvars
+debian/files
+
+debian/debhelper-build-stamp
+debian/.debhelper/
+

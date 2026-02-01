@@ -1,0 +1,2 @@
+version=4
+https://github.com/VitexSoftware/python-multiflexi/tags .*/v?(@ANY_VERSION@)\.tar\.gz
