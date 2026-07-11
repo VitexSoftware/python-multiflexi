@@ -10,7 +10,7 @@ Build-Depends:
  python3-setuptools,
  python3-urllib3,
  python3-dateutil,
- python3-pydantic,
+ python3-pydantic (>= 2),
 Standards-Version: 4.7.0
 Homepage: https://github.com/VitexSoftware/python-multiflexi
 Rules-Requires-Root: no
@@ -25,7 +25,7 @@ Depends:
  ${python3:Depends},
  python3-urllib3,
  python3-dateutil,
- python3-pydantic,
+ python3-pydantic (>= 2),
 Description: Python client for MultiFlexi API
  MultiFlexi API provides comprehensive access to job execution, application
  management, and user data operations. The API includes GDPR compliance
