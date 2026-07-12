@@ -4,7 +4,7 @@
 // python3-pydantic 1.10.x, too old for the package's
 // python3-pydantic (>= 2) requirement. Neither repo.multiflexi.eu nor
 // repo.vitexsoftware.com backports a compatible version.
-String[] distributions = ['debian:trixie', 'debian:forky']
+String[] distributions = ['debian:trixie']
 
 String vendor = 'vitexsoftware'
 String imagePrefix = 'multiflexi-'
