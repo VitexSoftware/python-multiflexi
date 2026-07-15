@@ -56,7 +56,7 @@ class TestApp(unittest.TestCase):
                 resultfile = '',
                 artifacts = '',
                 environment = {"ACCOUNT_NUMBER":{"type":"text","description":"Bank Account Number","defval":"","required":true},"CERT_PASS":{"type":"password","description":"Certificate password","defval":"","required":true}},
-                exit_codes = [{"severity":"success","retry":false,"description":{"en":"Success","cs":"Úspěch"}},{"severity":"error","retry":true,"description":{"en":"General error","cs":"Obecná chyba"}}],
+                exit_codes = {"0":{"severity":"success","retry":false,"description":{"en":"Success","cs":"Úspěch"}},"1":{"severity":"error","retry":true,"description":{"en":"General error","cs":"Obecná chyba"}}},
                 tags = [
                     multiflexi_client.models.tag.Tag(
                         id = 56, 

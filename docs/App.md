@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **resultfile** | **str** | Result file path | [optional] 
 **artifacts** | **str** | Output artifacts produced by the application | [optional] 
 **environment** | [**Dict[str, AppEnvironmentValue]**](AppEnvironmentValue.md) | Application environment configuration fields | [optional] 
-**exit_codes** | [**List[AppExitCodesInner]**](AppExitCodesInner.md) | Exit code definitions with multilingual descriptions | [optional] 
+**exit_codes** | [**Dict[str, ExitCodeDetail]**](ExitCodeDetail.md) | Exit code definitions with multilingual descriptions, keyed by exit code | [optional] 
 **tags** | [**List[Tag]**](Tag.md) |  | [optional] 
 **status** | **str** | App status in the store | [optional] 
 

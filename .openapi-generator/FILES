@@ -7,7 +7,7 @@ README.md
 docs/App.md
 docs/AppApi.md
 docs/AppEnvironmentValue.md
-docs/AppExitCodesInner.md
+docs/ExitCodeDetail.md
 docs/Company.md
 docs/CompanyApi.md
 docs/ConfField.md
@@ -72,7 +72,7 @@ multiflexi_client/exceptions.py
 multiflexi_client/models/__init__.py
 multiflexi_client/models/app.py
 multiflexi_client/models/app_environment_value.py
-multiflexi_client/models/app_exit_codes_inner.py
+multiflexi_client/models/exit_code_detail.py
 multiflexi_client/models/company.py
 multiflexi_client/models/conf_field.py
 multiflexi_client/models/configuration.py
@@ -125,7 +125,7 @@ test/__init__.py
 test/test_app.py
 test/test_app_api.py
 test/test_app_environment_value.py
-test/test_app_exit_codes_inner.py
+test/test_exit_code_detail.py
 test/test_company.py
 test/test_company_api.py
 test/test_conf_field.py

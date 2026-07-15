@@ -1,11 +1,11 @@
 [project]
 name = "multiflexi_client"
-version = "1.1.0"
+version = "1.1.1"
 description = "MultiFlexi API"
 authors = [
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
 ]
-license = {text = "MIT"}
+license = "MIT"
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "MultiFlexi API"]
 requires-python = ">=3.9"
@@ -30,6 +30,11 @@ tox = ">= 3.9.0"
 flake8 = ">= 4.0.0"
 types-python-dateutil = ">= 2.8.19.14"
 mypy = ">= 1.5"
+
+[tool.pytest.ini_options]
+markers = [
+  "live_demo: hits the live demo.multiflexi.eu server; requires network access and MULTIFLEXI_LIVE_DEMO_TESTS=1 (deselected by default)",
+]
 
 
 [build-system]

@@ -16,7 +16,7 @@
 # import models into model package
 from multiflexi_client.models.app import App
 from multiflexi_client.models.app_environment_value import AppEnvironmentValue
-from multiflexi_client.models.app_exit_codes_inner import AppExitCodesInner
+from multiflexi_client.models.exit_code_detail import ExitCodeDetail
 from multiflexi_client.models.company import Company
 from multiflexi_client.models.conf_field import ConfField
 from multiflexi_client.models.configuration import Configuration

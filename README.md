@@ -139,7 +139,7 @@ Class | Method | HTTP request | Description
 
  - [App](docs/App.md)
  - [AppEnvironmentValue](docs/AppEnvironmentValue.md)
- - [AppExitCodesInner](docs/AppExitCodesInner.md)
+ - [ExitCodeDetail](docs/ExitCodeDetail.md)
  - [Company](docs/Company.md)
  - [ConfField](docs/ConfField.md)
  - [Configuration](docs/Configuration.md)

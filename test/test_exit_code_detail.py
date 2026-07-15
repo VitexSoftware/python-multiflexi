@@ -14,10 +14,10 @@
 
 import unittest
 
-from multiflexi_client.models.app_exit_codes_inner import AppExitCodesInner
+from multiflexi_client.models.exit_code_detail import ExitCodeDetail
 
-class TestAppExitCodesInner(unittest.TestCase):
-    """AppExitCodesInner unit test stubs"""
+class TestExitCodeDetail(unittest.TestCase):
+    """ExitCodeDetail unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,16 +25,16 @@ class TestAppExitCodesInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AppExitCodesInner:
-        """Test AppExitCodesInner
+    def make_instance(self, include_optional) -> ExitCodeDetail:
+        """Test ExitCodeDetail
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `AppExitCodesInner`
+        # uncomment below to create an instance of `ExitCodeDetail`
         """
-        model = AppExitCodesInner()
+        model = ExitCodeDetail()
         if include_optional:
-            return AppExitCodesInner(
+            return ExitCodeDetail(
                 severity = 'success',
                 retry = True,
                 description = {
@@ -42,12 +42,12 @@ class TestAppExitCodesInner(unittest.TestCase):
                     }
             )
         else:
-            return AppExitCodesInner(
+            return ExitCodeDetail(
         )
         """
 
-    def testAppExitCodesInner(self):
-        """Test AppExitCodesInner"""
+    def testExitCodeDetail(self):
+        """Test ExitCodeDetail"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

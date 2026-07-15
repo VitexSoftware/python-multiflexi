@@ -1,3 +1,13 @@
+python3-multiflexi (1.1.1) unstable; urgency=medium
+
+  * Fix schema/server drift: apps.json and runtemplates.json now
+    correctly deserialize (server returns arrays, not ID-keyed objects);
+    App.exit_codes is now Dict[str, ExitCodeDetail] matching real API
+    output (was an unusable List[AppExitCodesInner] that could never
+    validate).
+
+ -- CyberVitexus <cybervitexus@gmail.com>  Wed, 15 Jul 2026 00:56:48 +0200
+
 python3-multiflexi (1.1.0) unstable; urgency=low
 
   * Initial Debian packaging of multiflexi-api-client

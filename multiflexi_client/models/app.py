@@ -21,7 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from multiflexi_client.models.app_environment_value import AppEnvironmentValue
-from multiflexi_client.models.app_exit_codes_inner import AppExitCodesInner
+from multiflexi_client.models.exit_code_detail import ExitCodeDetail
 from multiflexi_client.models.tag import Tag
 from typing import Optional, Set
 from typing_extensions import Self
@@ -51,7 +51,7 @@ class App(BaseModel):
     resultfile: Optional[StrictStr] = Field(default=None, description="Result file path")
     artifacts: Optional[StrictStr] = Field(default=None, description="Output artifacts produced by the application")
     environment: Optional[Dict[str, AppEnvironmentValue]] = Field(default=None, description="Application environment configuration fields")
-    exit_codes: Optional[List[AppExitCodesInner]] = Field(default=None, description="Exit code definitions with multilingual descriptions", alias="exitCodes")
+    exit_codes: Optional[Dict[str, ExitCodeDetail]] = Field(default=None, description="Exit code definitions with multilingual descriptions, keyed by exit code", alias="exitCodes")
     tags: Optional[List[Tag]] = None
     status: Optional[StrictStr] = Field(default=None, description="App status in the store")
     __properties: ClassVar[List[str]] = ["id", "enabled", "image", "name", "description", "executable", "DatCreate", "DatUpdate", "setup", "cmdparams", "deploy", "homepage", "requirements", "ociimage", "version", "code", "uuid", "topics", "resultfile", "artifacts", "environment", "exitCodes", "tags", "status"]
@@ -112,13 +112,13 @@ class App(BaseModel):
                 if self.environment[_key_environment]:
                     _field_dict[_key_environment] = self.environment[_key_environment].to_dict()
             _dict['environment'] = _field_dict
-        # override the default output from pydantic by calling `to_dict()` of each item in exit_codes (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of each value in exit_codes (dict)
+        _field_dict = {}
         if self.exit_codes:
-            for _item_exit_codes in self.exit_codes:
-                if _item_exit_codes:
-                    _items.append(_item_exit_codes.to_dict())
-            _dict['exitCodes'] = _items
+            for _key_exit_codes in self.exit_codes:
+                if self.exit_codes[_key_exit_codes]:
+                    _field_dict[_key_exit_codes] = self.exit_codes[_key_exit_codes].to_dict()
+            _dict['exitCodes'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
         _items = []
         if self.tags:
@@ -164,7 +164,12 @@ class App(BaseModel):
             )
             if obj.get("environment") is not None
             else None,
-            "exitCodes": [AppExitCodesInner.from_dict(_item) for _item in obj["exitCodes"]] if obj.get("exitCodes") is not None else None,
+            "exitCodes": dict(
+                (_k, ExitCodeDetail.from_dict(_v))
+                for _k, _v in obj["exitCodes"].items()
+            )
+            if obj.get("exitCodes") is not None
+            else None,
             "tags": [Tag.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None,
             "status": obj.get("status")
         })

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 # Define package exports
 __all__ = [
@@ -36,7 +36,7 @@ __all__ = [
     "ApiException",
     "App",
     "AppEnvironmentValue",
-    "AppExitCodesInner",
+    "ExitCodeDetail",
     "Company",
     "ConfField",
     "Configuration",
@@ -103,7 +103,7 @@ from multiflexi_client.exceptions import ApiException as ApiException
 # import models into sdk package
 from multiflexi_client.models.app import App as App
 from multiflexi_client.models.app_environment_value import AppEnvironmentValue as AppEnvironmentValue
-from multiflexi_client.models.app_exit_codes_inner import AppExitCodesInner as AppExitCodesInner
+from multiflexi_client.models.exit_code_detail import ExitCodeDetail as ExitCodeDetail
 from multiflexi_client.models.company import Company as Company
 from multiflexi_client.models.conf_field import ConfField as ConfField
 from multiflexi_client.models.configuration import Configuration as Configuration

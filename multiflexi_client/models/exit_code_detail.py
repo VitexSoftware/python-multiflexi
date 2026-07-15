@@ -22,9 +22,9 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AppExitCodesInner(BaseModel):
+class ExitCodeDetail(BaseModel):
     """
-    AppExitCodesInner
+    Severity, retry policy, and multilingual description for a single exit code
     """ # noqa: E501
     severity: Optional[StrictStr] = Field(default=None, description="Exit code severity level")
     retry: Optional[StrictBool] = Field(default=None, description="Whether to retry on this exit code")
@@ -59,7 +59,7 @@ class AppExitCodesInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AppExitCodesInner from a JSON string"""
+        """Create an instance of ExitCodeDetail from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,7 +84,7 @@ class AppExitCodesInner(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AppExitCodesInner from a dict"""
+        """Create an instance of ExitCodeDetail from a dict"""
         if obj is None:
             return None
 
@@ -97,5 +97,4 @@ class AppExitCodesInner(BaseModel):
             "description": obj.get("description")
         })
         return _obj
-
 
