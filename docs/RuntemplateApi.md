@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_run_templates**
-> List[RunTemplate] list_run_templates(suffix, limit=limit, offset=offset, order=order)
+> Dict[str, RunTemplate] list_run_templates(suffix, limit=limit, offset=offset, order=order)
 
 Show All RunTemplates
 
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[RunTemplate]**](RunTemplate.md)
+[**Dict[str, RunTemplate]**](RunTemplate.md)
 
 ### Authorization
 

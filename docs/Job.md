@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **schedule** | **str** |  | [optional] 
 **executor** | **str** |  | [optional] [default to 'Native']
 **runtemplate_id** | **int** |  | [optional] 
+**task_id** | **int** | FK to the Task this job belongs to | [optional] 
 **app_version** | **str** |  | [optional] [default to 'n/a']
 
 ## Example

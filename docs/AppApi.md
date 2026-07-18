@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_apps**
-> List[App] list_apps(suffix, limit=limit, offset=offset, order=order)
+> Dict[str, App] list_apps(suffix, limit=limit, offset=offset, order=order)
 
 Show All Apps
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[App]**](App.md)
+[**Dict[str, App]**](App.md)
 
 ### Authorization
 

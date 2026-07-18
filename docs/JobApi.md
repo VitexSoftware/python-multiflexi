@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getjob_by_id**](JobApi.md#getjob_by_id) | **GET** /job/{jobId}.{suffix} | Get job by ID
 [**listjobs**](JobApi.md#listjobs) | **GET** /jobs.{suffix} | Show All jobs
-[**setjob_by_id**](JobApi.md#setjob_by_id) | **POST** /job/ | Create or Update job record
+[**setjob_by_id**](JobApi.md#setjob_by_id) | **POST** /job/ | Schedule a job from a RunTemplate
 
 
 # **getjob_by_id**
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listjobs**
-> List[Job] listjobs(suffix, limit=limit, offset=offset, order=order)
+> Dict[str, Job] listjobs(suffix, limit=limit, offset=offset, order=order)
 
 Show All jobs
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[Job]**](Job.md)
+[**Dict[str, Job]**](Job.md)
 
 ### Authorization
 
@@ -183,11 +183,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **setjob_by_id**
-> Job setjob_by_id(job_id=job_id, limit=limit)
+> Job setjob_by_id(setjob_by_id_request, job_id=job_id, limit=limit)
 
-Create or Update job record
+Schedule a job from a RunTemplate
 
-Create or Update single job record
+Schedules a job for an existing RunTemplate (mirrors `multiflexi-cli run-template:schedule`). Used as the inbound trigger by external orchestrators such as Node-RED.
 
 ### Example
 
@@ -196,6 +196,7 @@ Create or Update single job record
 ```python
 import multiflexi_client
 from multiflexi_client.models.job import Job
+from multiflexi_client.models.setjob_by_id_request import SetjobByIdRequest
 from multiflexi_client.rest import ApiException
 from pprint import pprint
 
@@ -220,12 +221,13 @@ configuration = multiflexi_client.Configuration(
 with multiflexi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = multiflexi_client.JobApi(api_client)
+    setjob_by_id_request = multiflexi_client.SetjobByIdRequest() # SetjobByIdRequest | RunTemplate scheduling request
     job_id = 56 # int | ID of app to return (optional)
     limit = 20 # int | maximum number of results to return (optional) (default to 20)
 
     try:
-        # Create or Update job record
-        api_response = api_instance.setjob_by_id(job_id=job_id, limit=limit)
+        # Schedule a job from a RunTemplate
+        api_response = api_instance.setjob_by_id(setjob_by_id_request, job_id=job_id, limit=limit)
         print("The response of JobApi->setjob_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -239,6 +241,7 @@ with multiflexi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **setjob_by_id_request** | [**SetjobByIdRequest**](SetjobByIdRequest.md)| RunTemplate scheduling request | 
  **job_id** | **int**| ID of app to return | [optional] 
  **limit** | **int**| maximum number of results to return | [optional] [default to 20]
 
@@ -252,17 +255,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | record created or updated |  -  |
-**400** | Invalid ID supplied |  -  |
+**201** | Job scheduled |  -  |
+**400** | Invalid request body |  -  |
 **401** | Authentication information is missing or invalid |  * WWW_Authenticate -  <br>  |
-**404** | App not found |  -  |
+**404** | RunTemplate not found |  -  |
+**409** | RunTemplate is not active |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

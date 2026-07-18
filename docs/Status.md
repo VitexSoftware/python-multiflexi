@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **topics** | **int** |  | [optional] 
 **credentials** | **int** |  | [optional] 
 **credentialtypes** | **int** |  | [optional] 
+**eventsources** | **int** |  | [optional] 
+**eventrules** | **int** |  | [optional] 
 **database** | **str** |  | [optional] 
 **daemon** | **str** |  | [optional] 
 **timestamp** | **datetime** |  | [optional] 

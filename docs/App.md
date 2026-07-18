@@ -22,12 +22,14 @@ Name | Type | Description | Notes
 **version** | **str** |  | [optional] 
 **code** | **str** | Short application code | [optional] 
 **uuid** | **str** |  | [optional] 
-**topics** | **str** | Comma-separated list of topics/tags | [optional] 
+**topics** | **str** | Comma-separated list of topics/tags (deprecated — use tags) | [optional] 
 **resultfile** | **str** | Result file path | [optional] 
 **artifacts** | **str** | Output artifacts produced by the application | [optional] 
+**deffile** | **str** | Path to the application definition JSON file | [optional] 
+**helmchart** | **str** | URI or local path to Helm chart | [optional] 
 **environment** | [**Dict[str, AppEnvironmentValue]**](AppEnvironmentValue.md) | Application environment configuration fields | [optional] 
 **exit_codes** | [**Dict[str, ExitCodeDetail]**](ExitCodeDetail.md) | Exit code definitions with multilingual descriptions, keyed by exit code | [optional] 
-**tags** | [**List[Tag]**](Tag.md) |  | [optional] 
+**tags** | **str** | Comma-separated list of tags (there is no structured Tag entity in the current implementation) | [optional] 
 **status** | **str** | App status in the store | [optional] 
 
 ## Example

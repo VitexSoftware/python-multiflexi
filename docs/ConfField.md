@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **app_id** | **int** |  | [optional] 
 **keyname** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
+**category** | **str** | Configuration option category: API, Database, Behavior, Security or Other | [optional] [default to '']
 **description** | **str** |  | [optional] 
 **defval** | **str** |  | [optional] 
 
