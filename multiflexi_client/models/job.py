@@ -35,8 +35,8 @@ class Job(BaseModel):
     exitcode: Optional[StrictInt] = None
     stdout: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None
     stderr: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = None
-    launched_by: Optional[StrictStr] = None
-    env: Optional[StrictStr] = None
+    launched_by: Optional[StrictInt] = Field(default=None, description="User id who launched the job")
+    env: Optional[Union[Dict[str, Any], StrictStr]] = Field(default=None, description="Job environment variables. Prefer a decoded object; older rows or nested Task payloads may still surface a PHP-serialized string until the API normalizes them.")
     command: Optional[StrictStr] = None
     schedule: Optional[StrictStr] = None
     executor: Optional[StrictStr] = 'Native'

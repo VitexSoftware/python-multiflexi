@@ -206,7 +206,7 @@ conf = multiflexi_client.Configuration(
     ) -> None:
         """Constructor
         """
-        self._base_path = "https://virtserver.swaggerhub.com/VitexSoftware/MultiFlexi/1.0.0" if host is None else host
+        self._base_path = "https://demo.multiflexi.com/api/VitexSoftware/MultiFlexi/1.0.0" if host is None else host
         """Default Base url
         """
         self.server_index = 0 if server_index is None and host is None else server_index
@@ -536,16 +536,16 @@ conf = multiflexi_client.Configuration(
         """
         return [
             {
-                'url': "https://virtserver.swaggerhub.com/VitexSoftware/MultiFlexi/1.0.0",
-                'description': "SwaggerHub API Auto Mocking",
+                'url': "https://demo.multiflexi.com/api/VitexSoftware/MultiFlexi/1.0.0",
+                'description': "Demo server",
             },
             {
                 'url': "http://localhost/MultiFlexi/src/api/VitexSoftware/MultiFlexi/1.0.0",
                 'description': "Localhost",
             },
             {
-                'url': "https://demo.multiflexi.com/api/VitexSoftware/MultiFlexi/1.0.0",
-                'description': "Demo server",
+                'url': "https://virtserver.swaggerhub.com/VitexSoftware/MultiFlexi/1.0.0",
+                'description': "SwaggerHub API Auto Mocking (not a real deployment - do not use as a client default)",
             }
         ]
 

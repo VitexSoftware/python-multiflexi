@@ -21,6 +21,7 @@ from typing import Any, Dict, List, Optional
 from typing_extensions import Annotated
 from multiflexi_client.models.credential import Credential
 from multiflexi_client.models.update_credentials201_response import UpdateCredentials201Response
+from multiflexi_client.models.update_credentials_request import UpdateCredentialsRequest
 
 from multiflexi_client.api_client import ApiClient, RequestSerialized
 from multiflexi_client.api_response import ApiResponse
@@ -334,6 +335,7 @@ class CredentialApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'basicAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -649,6 +651,7 @@ class CredentialApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'basicAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -675,6 +678,7 @@ class CredentialApi:
         token: Annotated[StrictStr, Field(description="User's access token")],
         credential_id: Annotated[StrictInt, Field(description="ID of Credential to return")],
         suffix: Annotated[StrictStr, Field(description="force format suffix")],
+        update_credentials_request: UpdateCredentialsRequest,
         limit: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="maximum number of results to return")] = None,
         _request_timeout: Union[
             None,
@@ -699,6 +703,8 @@ class CredentialApi:
         :type credential_id: int
         :param suffix: force format suffix (required)
         :type suffix: str
+        :param update_credentials_request: (required)
+        :type update_credentials_request: UpdateCredentialsRequest
         :param limit: maximum number of results to return
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
@@ -727,6 +733,7 @@ class CredentialApi:
             token=token,
             credential_id=credential_id,
             suffix=suffix,
+            update_credentials_request=update_credentials_request,
             limit=limit,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -756,6 +763,7 @@ class CredentialApi:
         token: Annotated[StrictStr, Field(description="User's access token")],
         credential_id: Annotated[StrictInt, Field(description="ID of Credential to return")],
         suffix: Annotated[StrictStr, Field(description="force format suffix")],
+        update_credentials_request: UpdateCredentialsRequest,
         limit: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="maximum number of results to return")] = None,
         _request_timeout: Union[
             None,
@@ -780,6 +788,8 @@ class CredentialApi:
         :type credential_id: int
         :param suffix: force format suffix (required)
         :type suffix: str
+        :param update_credentials_request: (required)
+        :type update_credentials_request: UpdateCredentialsRequest
         :param limit: maximum number of results to return
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
@@ -808,6 +818,7 @@ class CredentialApi:
             token=token,
             credential_id=credential_id,
             suffix=suffix,
+            update_credentials_request=update_credentials_request,
             limit=limit,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -837,6 +848,7 @@ class CredentialApi:
         token: Annotated[StrictStr, Field(description="User's access token")],
         credential_id: Annotated[StrictInt, Field(description="ID of Credential to return")],
         suffix: Annotated[StrictStr, Field(description="force format suffix")],
+        update_credentials_request: UpdateCredentialsRequest,
         limit: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="maximum number of results to return")] = None,
         _request_timeout: Union[
             None,
@@ -861,6 +873,8 @@ class CredentialApi:
         :type credential_id: int
         :param suffix: force format suffix (required)
         :type suffix: str
+        :param update_credentials_request: (required)
+        :type update_credentials_request: UpdateCredentialsRequest
         :param limit: maximum number of results to return
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
@@ -889,6 +903,7 @@ class CredentialApi:
             token=token,
             credential_id=credential_id,
             suffix=suffix,
+            update_credentials_request=update_credentials_request,
             limit=limit,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -913,6 +928,7 @@ class CredentialApi:
         token,
         credential_id,
         suffix,
+        update_credentials_request,
         limit,
         _request_auth,
         _content_type,
@@ -951,6 +967,8 @@ class CredentialApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if update_credentials_request is not None:
+            _body_params = update_credentials_request
 
 
         # set the HTTP header `Accept`
@@ -961,9 +979,23 @@ class CredentialApi:
                 ]
             )
 
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [
+            'basicAuth'
         ]
 
         return self.api_client.param_serialize(

@@ -17,35 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Credential(BaseModel):
+class Deletejobs200Response(BaseModel):
     """
-    Credential
+    Deletejobs200Response
     """ # noqa: E501
-    id: Optional[StrictInt] = None
-    company_id: Optional[StrictInt] = None
-    name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
-    type: Optional[StrictStr] = None
-    value: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
-    dat_create: Optional[datetime] = Field(default=None, alias="DatCreate")
-    dat_update: Optional[datetime] = Field(default=None, alias="DatUpdate")
-    __properties: ClassVar[List[str]] = ["id", "company_id", "name", "type", "value", "DatCreate", "DatUpdate"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['password', 'token', 'certificate']):
-            raise ValueError("must be one of enum values ('password', 'token', 'certificate')")
-        return value
+    dry_run: Optional[StrictBool] = None
+    matched: Optional[StrictInt] = None
+    deleted: Optional[StrictInt] = None
+    job_ids: Optional[List[StrictInt]] = None
+    __properties: ClassVar[List[str]] = ["dry_run", "matched", "deleted", "job_ids"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -65,7 +50,7 @@ class Credential(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Credential from a JSON string"""
+        """Create an instance of Deletejobs200Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -90,7 +75,7 @@ class Credential(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Credential from a dict"""
+        """Create an instance of Deletejobs200Response from a dict"""
         if obj is None:
             return None
 
@@ -98,13 +83,10 @@ class Credential(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "company_id": obj.get("company_id"),
-            "name": obj.get("name"),
-            "type": obj.get("type"),
-            "value": obj.get("value"),
-            "DatCreate": obj.get("DatCreate"),
-            "DatUpdate": obj.get("DatUpdate")
+            "dry_run": obj.get("dry_run"),
+            "matched": obj.get("matched"),
+            "deleted": obj.get("deleted"),
+            "job_ids": obj.get("job_ids")
         })
         return _obj
 

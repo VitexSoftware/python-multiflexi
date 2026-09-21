@@ -16,9 +16,10 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Dict, Optional
 from typing_extensions import Annotated
+from multiflexi_client.models.deletejobs200_response import Deletejobs200Response
 from multiflexi_client.models.job import Job
 from multiflexi_client.models.setjob_by_id_request import SetjobByIdRequest
 
@@ -38,6 +39,622 @@ class JobApi:
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+
+
+    @validate_call
+    def deletejob_by_id(
+        self,
+        job_id: Annotated[StrictInt, Field(description="ID of job to delete")],
+        suffix: Annotated[StrictStr, Field(description="force format suffix")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete job by ID
+
+        Remove a single job record. Requires the `admin` RBAC role.
+
+        :param job_id: ID of job to delete (required)
+        :type job_id: int
+        :param suffix: force format suffix (required)
+        :type suffix: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._deletejob_by_id_serialize(
+            job_id=job_id,
+            suffix=suffix,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '401': None,
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def deletejob_by_id_with_http_info(
+        self,
+        job_id: Annotated[StrictInt, Field(description="ID of job to delete")],
+        suffix: Annotated[StrictStr, Field(description="force format suffix")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete job by ID
+
+        Remove a single job record. Requires the `admin` RBAC role.
+
+        :param job_id: ID of job to delete (required)
+        :type job_id: int
+        :param suffix: force format suffix (required)
+        :type suffix: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._deletejob_by_id_serialize(
+            job_id=job_id,
+            suffix=suffix,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '401': None,
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def deletejob_by_id_without_preload_content(
+        self,
+        job_id: Annotated[StrictInt, Field(description="ID of job to delete")],
+        suffix: Annotated[StrictStr, Field(description="force format suffix")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete job by ID
+
+        Remove a single job record. Requires the `admin` RBAC role.
+
+        :param job_id: ID of job to delete (required)
+        :type job_id: int
+        :param suffix: force format suffix (required)
+        :type suffix: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._deletejob_by_id_serialize(
+            job_id=job_id,
+            suffix=suffix,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '401': None,
+            '403': None,
+            '404': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _deletejob_by_id_serialize(
+        self,
+        job_id,
+        suffix,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if job_id is not None:
+            _path_params['jobId'] = job_id
+        if suffix is not None:
+            _path_params['suffix'] = suffix
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'basicAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/job/{jobId}.{suffix}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def deletejobs(
+        self,
+        suffix: Annotated[StrictStr, Field(description="force format suffix")],
+        runtemplate_id: Annotated[Optional[StrictInt], Field(description="Restrict deletion to this RunTemplate ID")] = None,
+        var_from: Annotated[Optional[StrictStr], Field(description="Only delete jobs with begin >= this datetime (Y-m-d H:i:s)")] = None,
+        to: Annotated[Optional[StrictStr], Field(description="Only delete jobs with begin <= this datetime (Y-m-d H:i:s)")] = None,
+        dry_run: Annotated[Optional[StrictBool], Field(description="When true, only report the count/ids that would be deleted")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Deletejobs200Response:
+        """Bulk delete jobs matching filters
+
+        Delete all jobs matching the given filters (runtemplate_id and/or a begin-time window). Intended for cleaning up runs produced by a scheduler malfunction. At least one filter is required. Requires the `admin` RBAC role.
+
+        :param suffix: force format suffix (required)
+        :type suffix: str
+        :param runtemplate_id: Restrict deletion to this RunTemplate ID
+        :type runtemplate_id: int
+        :param var_from: Only delete jobs with begin >= this datetime (Y-m-d H:i:s)
+        :type var_from: str
+        :param to: Only delete jobs with begin <= this datetime (Y-m-d H:i:s)
+        :type to: str
+        :param dry_run: When true, only report the count/ids that would be deleted
+        :type dry_run: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._deletejobs_serialize(
+            suffix=suffix,
+            runtemplate_id=runtemplate_id,
+            var_from=var_from,
+            to=to,
+            dry_run=dry_run,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "Deletejobs200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def deletejobs_with_http_info(
+        self,
+        suffix: Annotated[StrictStr, Field(description="force format suffix")],
+        runtemplate_id: Annotated[Optional[StrictInt], Field(description="Restrict deletion to this RunTemplate ID")] = None,
+        var_from: Annotated[Optional[StrictStr], Field(description="Only delete jobs with begin >= this datetime (Y-m-d H:i:s)")] = None,
+        to: Annotated[Optional[StrictStr], Field(description="Only delete jobs with begin <= this datetime (Y-m-d H:i:s)")] = None,
+        dry_run: Annotated[Optional[StrictBool], Field(description="When true, only report the count/ids that would be deleted")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[Deletejobs200Response]:
+        """Bulk delete jobs matching filters
+
+        Delete all jobs matching the given filters (runtemplate_id and/or a begin-time window). Intended for cleaning up runs produced by a scheduler malfunction. At least one filter is required. Requires the `admin` RBAC role.
+
+        :param suffix: force format suffix (required)
+        :type suffix: str
+        :param runtemplate_id: Restrict deletion to this RunTemplate ID
+        :type runtemplate_id: int
+        :param var_from: Only delete jobs with begin >= this datetime (Y-m-d H:i:s)
+        :type var_from: str
+        :param to: Only delete jobs with begin <= this datetime (Y-m-d H:i:s)
+        :type to: str
+        :param dry_run: When true, only report the count/ids that would be deleted
+        :type dry_run: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._deletejobs_serialize(
+            suffix=suffix,
+            runtemplate_id=runtemplate_id,
+            var_from=var_from,
+            to=to,
+            dry_run=dry_run,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "Deletejobs200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def deletejobs_without_preload_content(
+        self,
+        suffix: Annotated[StrictStr, Field(description="force format suffix")],
+        runtemplate_id: Annotated[Optional[StrictInt], Field(description="Restrict deletion to this RunTemplate ID")] = None,
+        var_from: Annotated[Optional[StrictStr], Field(description="Only delete jobs with begin >= this datetime (Y-m-d H:i:s)")] = None,
+        to: Annotated[Optional[StrictStr], Field(description="Only delete jobs with begin <= this datetime (Y-m-d H:i:s)")] = None,
+        dry_run: Annotated[Optional[StrictBool], Field(description="When true, only report the count/ids that would be deleted")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Bulk delete jobs matching filters
+
+        Delete all jobs matching the given filters (runtemplate_id and/or a begin-time window). Intended for cleaning up runs produced by a scheduler malfunction. At least one filter is required. Requires the `admin` RBAC role.
+
+        :param suffix: force format suffix (required)
+        :type suffix: str
+        :param runtemplate_id: Restrict deletion to this RunTemplate ID
+        :type runtemplate_id: int
+        :param var_from: Only delete jobs with begin >= this datetime (Y-m-d H:i:s)
+        :type var_from: str
+        :param to: Only delete jobs with begin <= this datetime (Y-m-d H:i:s)
+        :type to: str
+        :param dry_run: When true, only report the count/ids that would be deleted
+        :type dry_run: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._deletejobs_serialize(
+            suffix=suffix,
+            runtemplate_id=runtemplate_id,
+            var_from=var_from,
+            to=to,
+            dry_run=dry_run,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "Deletejobs200Response",
+            '400': None,
+            '401': None,
+            '403': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _deletejobs_serialize(
+        self,
+        suffix,
+        runtemplate_id,
+        var_from,
+        to,
+        dry_run,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if suffix is not None:
+            _path_params['suffix'] = suffix
+        # process the query parameters
+        if runtemplate_id is not None:
+            
+            _query_params.append(('runtemplate_id', runtemplate_id))
+            
+        if var_from is not None:
+            
+            _query_params.append(('from', var_from))
+            
+        if to is not None:
+            
+            _query_params.append(('to', to))
+            
+        if dry_run is not None:
+            
+            _query_params.append(('dry_run', dry_run))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'basicAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/jobs.{suffix}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
 
 
     @validate_call

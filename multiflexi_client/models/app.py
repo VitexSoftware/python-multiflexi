@@ -156,15 +156,15 @@ class App(BaseModel):
             "helmchart": obj.get("helmchart"),
             "environment": dict(
                 (_k, AppEnvironmentValue.from_dict(_v))
-                for _k, _v in obj["environment"].items()
+                for _k, _v in (obj.get("environment") or {}).items()
             )
-            if obj.get("environment") is not None
+            if isinstance(obj.get("environment"), dict)
             else None,
             "exitCodes": dict(
                 (_k, ExitCodeDetail.from_dict(_v))
-                for _k, _v in obj["exitCodes"].items()
+                for _k, _v in (obj.get("exitCodes") or {}).items()
             )
-            if obj.get("exitCodes") is not None
+            if isinstance(obj.get("exitCodes"), dict)
             else None,
             "tags": obj.get("tags"),
             "status": obj.get("status")

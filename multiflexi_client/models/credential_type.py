@@ -29,7 +29,7 @@ class CredentialType(BaseModel):
     CredentialType
     """ # noqa: E501
     id: Optional[StrictInt] = None
-    name: Optional[Annotated[str, Field(strict=True, max_length=32)]] = None
+    name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
     description: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
     url: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
     logo: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None

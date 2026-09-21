@@ -1,3 +1,12 @@
+python3-multiflexi (1.1.2) unstable; urgency=medium
+
+  * Regenerate from OpenAPI: basicAuth on credential/topic paths;
+    Credential(Type).name maxLength 255; EventRule.operation free-form
+    (meta-states such as settled); Job.env as object|string; App
+    environment/exitCodes tolerate empty non-dict payloads.
+
+ -- vitex <info@vitexsoftware.cz>  Mon, 21 Sep 2026 08:30:36 +0200
+
 python3-multiflexi (1.1.1) unstable; urgency=medium
 
   * Fix schema/server drift: apps.json and runtemplates.json now

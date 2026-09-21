@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -31,7 +31,7 @@ class EventRule(BaseModel):
     id: Optional[StrictInt] = None
     event_source_id: Optional[StrictInt] = Field(default=None, description="References EventSource")
     evidence: Optional[Annotated[str, Field(strict=True, max_length=60)]] = Field(default=None, description="Evidence type pattern to match (null = any)")
-    operation: Optional[StrictStr] = Field(default='any', description="Operation to match")
+    operation: Optional[Annotated[str, Field(strict=True, max_length=32)]] = Field(default='any', description="Operation or meta-state to match. Built-in values include any, create, update, delete; adapters may also emit meta-states such as settled, storno, remind1, remind2, remind3, or penalised.")
     runtemplate_id: Optional[StrictInt] = Field(default=None, description="RunTemplate ID to trigger when rule matches")
     priority: Optional[StrictInt] = Field(default=0, description="Higher priority rules are evaluated first")
     enabled: Optional[StrictBool] = Field(default=True, description="Whether this rule is active")
@@ -39,16 +39,6 @@ class EventRule(BaseModel):
     created: Optional[datetime] = None
     modified: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["id", "event_source_id", "evidence", "operation", "runtemplate_id", "priority", "enabled", "env_mapping", "created", "modified"]
-
-    @field_validator('operation')
-    def operation_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['any', 'create', 'update', 'delete']):
-            raise ValueError("must be one of enum values ('any', 'create', 'update', 'delete')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

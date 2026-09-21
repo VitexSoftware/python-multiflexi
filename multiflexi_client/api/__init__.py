@@ -2,6 +2,7 @@
 
 # import apis into api package
 from multiflexi_client.api.app_api import AppApi
+from multiflexi_client.api.auditlog_api import AuditlogApi
 from multiflexi_client.api.company_api import CompanyApi
 from multiflexi_client.api.credential_api import CredentialApi
 from multiflexi_client.api.credential_type_api import CredentialTypeApi

@@ -19,6 +19,7 @@ __version__ = "1.2.0"
 # Define package exports
 __all__ = [
     "AppApi",
+    "AuditlogApi",
     "CompanyApi",
     "CredentialApi",
     "CredentialTypeApi",
@@ -45,6 +46,7 @@ __all__ = [
     "App",
     "AppEnvironmentValue",
     "AssignUserToCompanyRequest",
+    "AuditLogEntry",
     "Company",
     "CompanyUser",
     "ConfField",
@@ -69,6 +71,7 @@ __all__ = [
     "DataExportResponse",
     "DataExportStatusResponse",
     "DataExportStatusResponseExportsInner",
+    "Deletejobs200Response",
     "ErrorResponse",
     "EventRule",
     "EventSource",
@@ -92,16 +95,20 @@ __all__ = [
     "TestEventSourceConnection200Response",
     "Topic",
     "UnassignUserFromCompany200Response",
+    "UpdateCredentialTypeRequest",
     "UpdateCredentials201Response",
+    "UpdateCredentialsRequest",
     "UpdateRunTemplateById400Response",
     "UpdateRunTemplateById404Response",
     "UpdateRunTemplateById500Response",
     "UpdateRunTemplateByIdRequest",
+    "UpdateTopicRequest",
     "User",
 ]
 
 # import apis into sdk package
 from multiflexi_client.api.app_api import AppApi as AppApi
+from multiflexi_client.api.auditlog_api import AuditlogApi as AuditlogApi
 from multiflexi_client.api.company_api import CompanyApi as CompanyApi
 from multiflexi_client.api.credential_api import CredentialApi as CredentialApi
 from multiflexi_client.api.credential_type_api import CredentialTypeApi as CredentialTypeApi
@@ -132,6 +139,7 @@ from multiflexi_client.exceptions import ApiException as ApiException
 from multiflexi_client.models.app import App as App
 from multiflexi_client.models.app_environment_value import AppEnvironmentValue as AppEnvironmentValue
 from multiflexi_client.models.assign_user_to_company_request import AssignUserToCompanyRequest as AssignUserToCompanyRequest
+from multiflexi_client.models.audit_log_entry import AuditLogEntry as AuditLogEntry
 from multiflexi_client.models.company import Company as Company
 from multiflexi_client.models.company_user import CompanyUser as CompanyUser
 from multiflexi_client.models.conf_field import ConfField as ConfField
@@ -156,6 +164,7 @@ from multiflexi_client.models.data_export_data_user_profile import DataExportDat
 from multiflexi_client.models.data_export_response import DataExportResponse as DataExportResponse
 from multiflexi_client.models.data_export_status_response import DataExportStatusResponse as DataExportStatusResponse
 from multiflexi_client.models.data_export_status_response_exports_inner import DataExportStatusResponseExportsInner as DataExportStatusResponseExportsInner
+from multiflexi_client.models.deletejobs200_response import Deletejobs200Response as Deletejobs200Response
 from multiflexi_client.models.error_response import ErrorResponse as ErrorResponse
 from multiflexi_client.models.event_rule import EventRule as EventRule
 from multiflexi_client.models.event_source import EventSource as EventSource
@@ -179,9 +188,12 @@ from multiflexi_client.models.task import Task as Task
 from multiflexi_client.models.test_event_source_connection200_response import TestEventSourceConnection200Response as TestEventSourceConnection200Response
 from multiflexi_client.models.topic import Topic as Topic
 from multiflexi_client.models.unassign_user_from_company200_response import UnassignUserFromCompany200Response as UnassignUserFromCompany200Response
+from multiflexi_client.models.update_credential_type_request import UpdateCredentialTypeRequest as UpdateCredentialTypeRequest
 from multiflexi_client.models.update_credentials201_response import UpdateCredentials201Response as UpdateCredentials201Response
+from multiflexi_client.models.update_credentials_request import UpdateCredentialsRequest as UpdateCredentialsRequest
 from multiflexi_client.models.update_run_template_by_id400_response import UpdateRunTemplateById400Response as UpdateRunTemplateById400Response
 from multiflexi_client.models.update_run_template_by_id404_response import UpdateRunTemplateById404Response as UpdateRunTemplateById404Response
 from multiflexi_client.models.update_run_template_by_id500_response import UpdateRunTemplateById500Response as UpdateRunTemplateById500Response
 from multiflexi_client.models.update_run_template_by_id_request import UpdateRunTemplateByIdRequest as UpdateRunTemplateByIdRequest
+from multiflexi_client.models.update_topic_request import UpdateTopicRequest as UpdateTopicRequest
 from multiflexi_client.models.user import User as User

@@ -17,25 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Credential(BaseModel):
+class UpdateCredentialsRequest(BaseModel):
     """
-    Credential
+    UpdateCredentialsRequest
     """ # noqa: E501
-    id: Optional[StrictInt] = None
+    name: Optional[Annotated[str, Field(strict=True, max_length=32)]] = None
     company_id: Optional[StrictInt] = None
-    name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
-    type: Optional[StrictStr] = None
+    type: Optional[StrictStr] = Field(default=None, description="Type of credential")
     value: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
-    dat_create: Optional[datetime] = Field(default=None, alias="DatCreate")
-    dat_update: Optional[datetime] = Field(default=None, alias="DatUpdate")
-    __properties: ClassVar[List[str]] = ["id", "company_id", "name", "type", "value", "DatCreate", "DatUpdate"]
+    __properties: ClassVar[List[str]] = ["name", "company_id", "type", "value"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -65,7 +61,7 @@ class Credential(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Credential from a JSON string"""
+        """Create an instance of UpdateCredentialsRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -90,7 +86,7 @@ class Credential(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Credential from a dict"""
+        """Create an instance of UpdateCredentialsRequest from a dict"""
         if obj is None:
             return None
 
@@ -98,13 +94,10 @@ class Credential(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "company_id": obj.get("company_id"),
             "name": obj.get("name"),
+            "company_id": obj.get("company_id"),
             "type": obj.get("type"),
-            "value": obj.get("value"),
-            "DatCreate": obj.get("DatCreate"),
-            "DatUpdate": obj.get("DatUpdate")
+            "value": obj.get("value")
         })
         return _obj
 
